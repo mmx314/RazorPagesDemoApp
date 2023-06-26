@@ -1,17 +1,50 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<!-- Описание проекта на языке C#, использующего Microsoft.NET.Sdk.Web SDK для сборки веб-приложения -->
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<!-- Контейнер для свойств проекта (название проекта, целевая платформа, настройки сборки) -->
+	<PropertyGroup>
+		<!-- Определение целевой платформы .NET для проекта. В данном случае, проект использует .NET Core версии 3.1 -->
+		<TargetFramework>net7.0</TargetFramework>
+		<!-- Включение Nullable-типов в проекте -->
+		<Nullable>enable</Nullable>
+		<!-- Включение неявных директив using в проекте -->
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<!-- Элемент, содержащий группу элементов, определяющих настройки сборки проекта -->
+	<ItemGroup>
+		<!-- Ссылка на пакет Microsoft.EntityFrameworkCore.SqlServer версии 7.0.7 -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
+		<!-- Ссылка на пакет Microsoft.EntityFrameworkCore.Tools версии 7.0.7, который содержит инструменты для работы с Entity Framework Core -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
+			<!-- Указание того, что все пакеты PrivateAssets должны быть исключены из сборки проекта -->
+			<PrivateAssets>all</PrivateAssets>
+			<!-- Указание того, что в состав пакета включаются только указанные типы ресурсов и файлов -->
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>
+
+<!--
+PrivateAssets - это опция в файле проекта *.csproj, которая позволяет указать какие зависимости пакета не должны быть доступны МСБОТу. 
+
+Эта опция влючает в себя несколько флагов, таких как:
+- all - все пакеты будут скрыты от MSBuild;
+- compile - скрыть только компилируемые файлы;
+- runtime - скрыть только файлы, используемые во время выполнения;
+- contentfiles - скрыть только ресурсы (например, конфигурационные файлы).
+
+PrivateAssets используется для того, чтобы скрыть от MSBuild(*) ненужные файлы. 
+Например, вы можете иметь зависимости, которые должны быть доступны только в процессе сборки проекта, но не должны быть доступны для выполнения, такие как файлы, используемые для написания тестов. Отключение таких зависимостей может снизить нагрузку на сборку проекта и уменьшить размер конечного файла. 
+Также PrivateAssets может использоваться для скрытия зависимостей, которые не должны быть изменены во время выполнения, 
+таких как системные зависимости, которые компилируются при сборке проекта, но не должны быть переданы в рабочее окружение. 
+Когда вы устанавливаете PrivateAssets, важно убедиться, что все зависимости в проекте правильно настроены,
+чтобы избежать ошибок при компиляции или выполнении проекта.
+
+(*)
+MSBuild (Microsoft Build Engine) - это инструмент для автоматизации сборки проектов в .NET-платформах. Это основной инструмент для сборки и сопровождения проектов в Visual Studio, а также для сборки проектов из командной строки. 
+MSBuild использует файлы проекта с расширением *.csproj (для проектов на C#) и другие, в которых описываются зависимости проекта, исходные коды, ресурсы и настройки сборки. При сборке проекта MSBuild считывает эти файлы и выполняет определенные действия, такие как компиляция исходного кода, копирование файлов, создание пакетов, запуск тестов и другие, в зависимости от настроек файла проекта.
+MSBuild является центральной составной частью сборки проектов в .NET-платформах и широко используется разработчиками при создании приложений или библиотек для .NET. Он предоставляет гибкость и мощные возможности для организации и автоматизации сборки проектов, что позволяет ускорить разработку, уменьшить ошибки в процессе сборки и повысить эффективность работы.
+-->
+
