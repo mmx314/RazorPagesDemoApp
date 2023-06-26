@@ -7,32 +7,45 @@ namespace RazorPagesDemoApp
 	{
 		public static void Main(string[] args)
 		{
+			// Создание экземпляра объекта WebApplication и передача аргументов командной строки
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
+			// Регистрация сервиса Razor Pages
 			builder.Services.AddRazorPages();
-			builder.Services.AddDbContext<RazorPagesDemoDbContext>(options =>
-			options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesDemoConnectionString")));
 
+			// Регистрация контекста базы данных RazorPagesDemoDbContext
+			// с использованием строки подключения из конфигурации
+			builder.Services.AddDbContext<RazorPagesDemoDbContext>(options =>
+				options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesDemoConnectionString")));
+
+			// Построение объекта WebApplication
 			var app = builder.Build();
 
-			// Configure the HTTP request pipeline.
+			// Проверка, не является ли текущая среда разработкой
 			if (!app.Environment.IsDevelopment())
 			{
+				// В случае, если текущая среда не является разработкой,
+				// перенаправление на страницу ошибки и использование HSTS (HTTP Strict Transport Security)
 				app.UseExceptionHandler("/Error");
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
 
+			// Перенаправление HTTP-запросов на HTTPS
 			app.UseHttpsRedirection();
+
+			// Позволяет приложению обслуживать статические файлы, например, CSS и JavaScript
 			app.UseStaticFiles();
 
+			// Маршрутизация HTTP-запросов
 			app.UseRouting();
 
+			// Аутентификация и авторизация пользователей
 			app.UseAuthorization();
 
+			// Сопоставление Razor Pages
 			app.MapRazorPages();
 
+			// Запуск приложения
 			app.Run();
 		}
 	}

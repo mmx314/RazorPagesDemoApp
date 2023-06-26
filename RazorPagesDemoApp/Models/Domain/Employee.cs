@@ -1,4 +1,5 @@
-﻿namespace RazorPagesDemoApp.Models.Domain
+﻿                                                                                                   
+namespace RazorPagesDemoApp.Models.Domain
 {
 	public class Employee
 	{
