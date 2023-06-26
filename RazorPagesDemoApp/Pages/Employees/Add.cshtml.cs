@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using RazorPagesDemoApp.Data;
+using RazorPagesDemoApp.Models.Domain;
 using RazorPagesDemoApp.Models.ViewModels;
 
 namespace RazorPagesDemoApp.Pages.Employees
@@ -24,11 +25,13 @@ namespace RazorPagesDemoApp.Pages.Employees
 
 		public void OnPost()
 		{
-            //Convert ViewModel to DomainModel
-            var employeeDamainModel = new Employee
-            { 
-                Name = 
-            }
+			/*
+						//Convert ViewModel to DomainModel
+						var employeeDamainModel = new Employee
+						{ 
+							Name = 
+						}
+			*/
 		}
 	}
 }
