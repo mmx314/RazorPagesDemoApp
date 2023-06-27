@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------------------------------------------------------
+//https://www.youtube.com/watch?v=ZEwVdAxdzys
+//ASP.NET Core Razor Pages CRUD - .NET 6 Razor Pages CRUD Using Entity Framework Core and SQL Server
+//Sameer Saini
+//---------------------------------------------------------------------------------------------------------------------
+
 using Microsoft.EntityFrameworkCore;
 using RazorPagesDemoApp.Data;
 
